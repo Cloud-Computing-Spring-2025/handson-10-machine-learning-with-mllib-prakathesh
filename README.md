@@ -34,16 +34,16 @@ Clean the dataset and prepare features for ML algorithms.
 
 **Code Output:**
 
-```
-+--------------------+-----------+
-|features            |ChurnIndex |
-+--------------------+-----------+
-|[0.0,12.0,29.85,29...|0.0        |
-|[0.0,1.0,56.95,56....|1.0        |
-|[1.0,5.0,53.85,108...|0.0        |
-|[0.0,2.0,42.30,184...|1.0        |
-|[0.0,8.0,70.70,151...|0.0        |
-+--------------------+-----------+
+===== Task 1: Features with ChurnIndex =====
++--------------------+----------+
+|            features|ChurnIndex|
++--------------------+----------+
+|[1.0,1.0,1.0,0.0,...|       0.0|
+|[1.0,1.0,0.0,1.0,...|       0.0|
+|[1.0,1.0,0.0,1.0,...|       1.0|
+|[1.0,1.0,1.0,0.0,...|       0.0|
+|[0.0,1.0,1.0,0.0,...|       0.0|
++--------------------+----------+
 ```
 ---
 
@@ -59,8 +59,9 @@ Train a logistic regression model and evaluate it using AUC (Area Under ROC Curv
 
 **Code Output Example:**
 ```
-Logistic Regression Model Accuracy: 0.83
-```
+===== Logistic Regression AUC =====
+AUC: 0.7235
+
 
 ---
 
@@ -75,15 +76,16 @@ Select the top 5 most important features using Chi-Square feature selection.
 
 **Code Output Example:**
 ```
-+--------------------+-----------+
-|selectedFeatures    |ChurnIndex |
-+--------------------+-----------+
-|[0.0,29.85,0.0,0.0...|0.0        |
-|[1.0,56.95,1.0,0.0...|1.0        |
-|[0.0,53.85,0.0,1.0...|0.0        |
-|[1.0,42.30,0.0,0.0...|1.0        |
-|[0.0,70.70,0.0,1.0...|0.0        |
-+--------------------+-----------+
+===== Top 5 Selected Features =====
++--------------------+----------+
+|    selectedFeatures|ChurnIndex|
++--------------------+----------+
+|[1.0,1.0,0.0,41.0...|       0.0|
+|[1.0,0.0,1.0,1.0,...|       0.0|
+|[1.0,0.0,1.0,16.0...|       1.0|
+|[1.0,1.0,0.0,63.0...|       0.0|
+|[1.0,1.0,0.0,54.0...|       0.0|
++--------------------+----------+
 
 ```
 
@@ -107,23 +109,23 @@ Use CrossValidator to tune models and compare their AUC performance.
 
 **Code Output Example:**
 ```
+===== Cross-Validation Model Comparison =====
+
 Tuning LogisticRegression...
-LogisticRegression Best Model Accuracy (AUC): 0.84
-Best Params for LogisticRegression: regParam=0.01, maxIter=20
+LogisticRegression Best Model Accuracy (AUC): 0.72
+Best Params for LogisticRegression: regParam=0.0, maxIter=100
 
 Tuning DecisionTree...
-DecisionTree Best Model Accuracy (AUC): 0.77
-Best Params for DecisionTree: maxDepth=10
+DecisionTree Best Model Accuracy (AUC): 0.74
+Best Params for DecisionTree: maxDepth=5
 
 Tuning RandomForest...
-RandomForest Best Model Accuracy (AUC): 0.86
-Best Params for RandomForest: maxDepth=15
-numTrees=50
+RandomForest Best Model Accuracy (AUC): 0.78
+Best Params for RandomForest: maxDepth=5, numTrees=20
 
 Tuning GBT...
-GBT Best Model Accuracy (AUC): 0.88
-Best Params for GBT: maxDepth=10
-maxIter=20
+GBT Best Model Accuracy (AUC): 0.73
+Best Params for GBT: maxDepth=5, maxIter=20
 
 ```
 ---
@@ -138,9 +140,7 @@ maxIter=20
 
 ### 2. Run the Project
 
-### 2. Run the Pr
 
-```bash
 spark-submit churn_prediction.py
 ```
-### Make sure to include your original ouput and explain the code
+
